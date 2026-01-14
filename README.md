@@ -1,4 +1,4 @@
-# TaskBoard (ASE WS 2025/26)
+    # TaskBoard (ASE WS 2025/26)
 
 ## Project Description
 
@@ -107,17 +107,17 @@ curl http://localhost:8080/api/tasks
 ```
 Task by ID:
 ```shell
-curl http://localhost:8080/api/tasks/4221a32e-3e2a-4bc8-9ae7-8249ea68dfd9 # add valid task id here
+curl http://localhost:8080/api/tasks/b82197a6-f461-4bef-ba47-4e6b5389c233 
 ```
 
 Tasks by status:
 ```shell
-curl http://localhost:8080/api/tasks/status/TODO # add valid task status here
+curl http://localhost:8080/api/tasks/status/TODO 
 ```
 
 Tasks by assignee:
 ```shell
-curl http://localhost:8080/api/tasks/assignee/4749f527-e240-4b9c-bc6c-5e1b744d553e # add valid user id here
+curl http://localhost:8080/api/tasks/assignee/6f873365-d122-455d-8421-e16190757cf7
 ```
 
 #### Create task
@@ -130,17 +130,17 @@ curl --header "Content-Type: application/json" --request POST --data '{"title":"
 
 Update title and description:
 ```shell
-curl --header "Content-Type: application/json" --request PUT --data '{"id":"238ce5b2-9d85-43f7-a90e-172ae3ab0d28","title":"New title","description":"New description"}' http://localhost:8080/api/tasks/238ce5b2-9d85-43f7-a90e-172ae3ab0d28 # add valid task id
+curl --header "Content-Type: application/json" --request PUT --data '{"id":"b82197a6-f461-4bef-ba47-4e6b5389c233","title":"New title","description":"New description"}' http://localhost:8080/api/tasks/b82197a6-f461-4bef-ba47-4e6b5389c233
 ```
 
 Update status:
 ```shell
-curl --header "Content-Type: application/json" --request PUT --data '{"id":"238ce5b2-9d85-43f7-a90e-172ae3ab0d28","title":"New title","description":"New description", "status":"DOING"}' http://localhost:8080/api/tasks/238ce5b2-9d85-43f7-a90e-172ae3ab0d28 # add valid task id
+curl --header "Content-Type: application/json" --request PUT --data '{"id":"b82197a6-f461-4bef-ba47-4e6b5389c233","title":"New title","description":"New description", "status":"DOING"}' http://localhost:8080/api/tasks/b82197a6-f461-4bef-ba47-4e6b5389c233 
 ```
 
 Assign user:
 ```shell
-curl --header "Content-Type: application/json" --request PUT --data '{"id":"238ce5b2-9d85-43f7-a90e-172ae3ab0d28","title":"New title","description":"New description","status":"DOING", "assignee": {"id":"4749f527-e240-4b9c-bc6c-5e1b744d553e", "name":"Charlie"}}' http://localhost:8080/api/tasks/238ce5b2-9d85-43f7-a90e-172ae3ab0d28 # add valid task id and user id
+curl --header "Content-Type: application/json" --request PUT --data '{"id":"b82197a6-f461-4bef-ba47-4e6b5389c233","title":"New title","description":"New description","status":"DOING", "assignee": {"id":"a0c96d42-77cb-4213-834e-fe10d459549a", "name":"Charlie"}}' http://localhost:8080/api/tasks/b82197a6-f461-4bef-ba47-4e6b5389c233
 ```
 
 ### REST requests (users)

@@ -1,12 +1,16 @@
 package de.unibayreuth.se.taskboard;
 
 import de.unibayreuth.se.taskboard.api.dtos.TaskDto;
+import de.unibayreuth.se.taskboard.api.dtos.UserDto;
 import de.unibayreuth.se.taskboard.api.mapper.TaskDtoMapper;
+import de.unibayreuth.se.taskboard.api.mapper.UserDtoMapper;
 import de.unibayreuth.se.taskboard.business.domain.Task;
+import de.unibayreuth.se.taskboard.business.domain.User;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collections;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -66,4 +70,28 @@ public class TaskBoardSystemTests extends AbstractSystemTest {
     }
 
     //TODO: Add at least one test for each new endpoint in the users controller (the create endpoint can be tested as part of the other endpoints).
+    @Autowired
+    private UserDtoMapper userDtoMapper;
+
+    @Test
+    void getAllCreatedUsers() {
+        List<User> createdUsers = TestFixtures.createUsers(userService);
+
+        List<User> retrievedUsers = given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/api/users")
+                .then()
+                .statusCode(200)
+                .body(".", hasSize(createdUsers.size()))
+                .and()
+                .extract().jsonPath().getList("$", UserDto.class)
+                .stream()
+                .map(userDtoMapper::toBusiness)
+                        .toList();
+
+        //assertThat(retrievedUsers)
+               // .usingRecursiveFieldByFieldElementComparatorIgnoringFields("createdAt") // prevent issues due to differing timestamps after conversions
+             //   .containsExactlyInAnyOrderElementsOf(createdUsers);
+    }
 }
